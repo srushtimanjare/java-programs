@@ -1,0 +1,98 @@
+
+class Student {
+
+    private String usn;
+    private String name;
+    private double m1, m2, m3;
+
+    static int count = 0;
+
+    final int MAX_MARKS = 100;
+
+    Student(String usn, String name, double m1, double m2, double m3) {
+        this.usn = usn;
+        this.name = name;
+
+        if (validateMarks(m1) && validateMarks(m2) && validateMarks(m3)) {
+            this.m1 = m1;
+            this.m2 = m2;
+            this.m3 = m3;
+        } else {
+            throw new IllegalArgumentException("Invalid marks!");
+        }
+
+        count++;
+    }
+
+    boolean validateMarks(double marks) {
+        return marks >= 0 && marks <= MAX_MARKS;
+    }
+
+    public String getUsn() {
+        return usn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getM1() {
+        return m1;
+    }
+
+    public double getM2() {
+        return m2;
+    }
+
+    public double getM3() {
+        return m3;
+    }
+
+    double calculateTotal() {
+        return m1 + m2 + m3;
+    }
+
+    double calculateAverage() {
+        return calculateTotal() / 3;
+    }
+
+    void display() {
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+    }
+
+    void display(boolean result) {
+        display();
+        System.out.println("Marks: " + m1 + ", " + m2 + ", " + m3);
+        System.out.println("Total: " + calculateTotal());
+        System.out.println("Average: " + calculateAverage());
+    }
+
+    Student getResultSummary() {
+        return new Student(usn, name,
+                calculateTotal(), calculateAverage(), 0);
+    }
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student("101", "Rahul", 85, 90, 80);
+
+        Student s2 = new Student("102", "Arun", 75, 80, 85);
+
+        System.out.println("Student 1 Details:");
+        s1.display();
+
+        System.out.println("\nStudent 1 Result:");
+        s1.display(true);
+
+        System.out.println("\nStudent 2 Result:");
+        s2.display(true);
+
+        System.out.println("\nNumber of Students: " + Student.count);
+
+        Student summary = s1.getResultSummary();
+
+        System.out.println("\nResult Summary Object:");
+        summary.display();
+    }
+}
