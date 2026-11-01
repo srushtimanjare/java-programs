@@ -1,0 +1,69 @@
+
+class BankAccount {
+
+    private int accountNumber;
+    private double balance;
+
+    static int accountCount = 0;
+
+    final int accountId;
+
+    BankAccount(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+
+        if (balance >= 0) {
+            this.balance = balance;
+        } else {
+            throw new IllegalArgumentException("Invalid balance");
+        }
+
+        accountCount++;
+        accountId = accountCount;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Invalid deposit amount!");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount!");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance!");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class BankTest {
+
+    public static void main(String[] args) {
+
+        BankAccount b1 = new BankAccount(101, 5000);
+        BankAccount b2 = new BankAccount(102, 3000);
+
+        System.out.println("Account ID: " + b1.accountId);
+
+        b1.deposit(2000);
+        b1.withdraw(1000);
+        b1.withdraw(10000);
+        b1.deposit(-500);
+
+        System.out.println("Account 1 Balance: " + b1.getBalance());
+
+        System.out.println("Account 2 Balance: " + b2.getBalance());
+
+        System.out.println("Total Accounts: " + BankAccount.accountCount);
+    }
+}
