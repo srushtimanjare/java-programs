@@ -1,0 +1,44 @@
+
+class InternetPlan {
+    int validity;
+    int data;
+    double price;
+
+    InternetPlan() {
+        this(28, 2, 299);
+    }
+
+    InternetPlan(int validity, int data) {
+        this(validity, data, 199);
+    }
+
+    InternetPlan(int validity, int data, double price) {
+        this.validity = validity;
+        this.data = data;
+        this.price = price;
+    }
+
+    void display() {
+        System.out.println("Validity: " + validity + " days");
+        System.out.println("Data: " + data + " GB/day");
+        System.out.println("Price: Rs. " + price);
+        System.out.println();
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        InternetPlan p1 = new InternetPlan();
+        InternetPlan p2 = new InternetPlan(56, 1);
+        InternetPlan p3 = new InternetPlan(84, 2, 599);
+
+        System.out.println("Default Internet Plan:");
+        p1.display();
+
+        System.out.println("Second Internet Plan:");
+        p2.display();
+
+        System.out.println("Third Internet Plan:");
+        p3.display();
+    }
+}
