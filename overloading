@@ -1,0 +1,35 @@
+
+class Time {
+    int seconds;
+
+    Time() {
+        seconds = 60;
+    }
+
+    Time(int s) {
+        seconds = s;
+    }
+
+    void display() {
+        System.out.println("Time in Seconds: " + seconds);
+        System.out.println("Time in Minutes: " + (seconds / 60.0));
+        System.out.println("Time in Hours: " + (seconds / 3600.0));
+        System.out.println();
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+
+
+        Time t1 = new Time();
+
+        Time t2 = new Time(3600);
+
+        System.out.println("Using Default Constructor:");
+        t1.display();
+
+        System.out.println("Using Parameterized Constructor:");
+        t2.display();
+    }
+}
